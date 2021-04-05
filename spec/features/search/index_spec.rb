@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Search by Nation index page' do 
   before :each do 
     @total_members ||=AirbenderService.total_members("Fire Nation")
+    @first_25 ||=AirbenderService.first_25_members("Fire Nation")
     visit root_path
     select "Fire Nation", :from => "nation"
     click_button "Search For Members"
@@ -18,6 +19,13 @@ RSpec.describe 'Search by Nation index page' do
       within "#totalMembers" do 
         expect(page).to have_content("Total Members: #{@total_members}")
       end
+    end
+    it "displays the first 25 members of the nation and their detials" do 
+      expect(@first_25.size).to eq(25)
+      expect(page).to have_content(@first_25.first.name)
+      expect(page).to have_content(@first_25.affiliations)
+      expect(page).to have_content(@first_25.last.name)
+      expect(page).to have_content(@first_25.last.affiliations)
     end
   end
 end

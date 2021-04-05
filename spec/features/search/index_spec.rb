@@ -23,9 +23,18 @@ RSpec.describe 'Search by Nation index page' do
     it "displays the first 25 members of the nation and their detials" do 
       expect(@first_25.size).to eq(25)
       expect(page).to have_content(@first_25.first.name)
-      expect(page).to have_content(@first_25.affiliations)
+      expect(page).to have_content(@first_25.first.affiliation)
+      expect(page).to have_content(@first_25.first.allies.first)
+      expect(page).to have_content(@first_25.first.enemies.first)
+      
+      expect(page).to have_content(@first_25.third.name)
+      expect(page).to have_content(@first_25.third.affiliation)
+      expect(page).to have_content(@first_25.third.allies.first)
+      expect(page).to have_content(@first_25.third.enemies.first)
+      
       expect(page).to have_content(@first_25.last.name)
-      expect(page).to have_content(@first_25.last.affiliations)
+      expect(page).to have_content(@first_25.last.allies.first)
+      expect(page).to have_content(@first_25.last.enemies.first)
     end
   end
 end

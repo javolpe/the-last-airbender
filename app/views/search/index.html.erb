@@ -4,3 +4,29 @@
 <section id="totalMembers">
   <h2>Total Members: <%= @total_members %></h2>
 </section>
+
+<section id="memberDetails">
+  <% @first_25.each do |member| %>
+  <h3><%= member.name %></h3>
+    <% if !member.photo.nil?%>
+      <p><%= image_tag member.photo %></p>
+    <% else %>
+      <p>No image on file.</p>
+    <% end %>
+    <h4>Allies: </h4>
+    <% member.allies.each do |ally| %>
+      <%= ally %>
+    <% end %>
+    <h4>Enemies: </h4>
+    <% member.enemies.each do |enemy| %>
+      <%= enemy %>
+    <% end %>
+    <h4>Affiliations: </h4>
+    
+      <%= member.affiliation %>
+    
+  <br>
+  <br>
+  <% end %>
+  
+</section>

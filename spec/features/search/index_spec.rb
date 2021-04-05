@@ -15,9 +15,9 @@ RSpec.describe 'Search by Nation index page' do
       within "#nation" do 
         expect(page).to have_content("Members of the Fire Nation")
       end
-      withing "#totalMembers" do 
+      within "#totalMembers" do 
         expect(page).to have_content("Total Members: #{@total_members}")
       end
     end
-
+  end
 end
